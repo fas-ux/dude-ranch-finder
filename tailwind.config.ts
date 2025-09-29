@@ -71,6 +71,7 @@ export default {
         display: ["var(--font-display)", "cursive"],
         serif: ["var(--font-serif)", "serif"],
         sans: ["var(--font-sans)", "system-ui", "sans-serif"],
+        western: ["Rye", "cursive"],
       },
       backgroundImage: {
         "gradient-hero": "var(--gradient-hero)",
