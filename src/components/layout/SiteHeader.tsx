@@ -31,11 +31,6 @@ export function SiteHeader() {
             </Link>
           </nav>
 
-          <div className="flex items-center space-x-3">
-            <Button variant="western" size="sm" asChild>
-              <Link to="/advertise">List Your Ranch</Link>
-            </Button>
-          </div>
         </div>
       </div>
     </header>

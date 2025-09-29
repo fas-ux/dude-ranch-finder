@@ -70,12 +70,6 @@ const Index = () => {
                 <ArrowRight className="ml-2" />
               </Link>
             </Button>
-            <Button variant="western" size="lg" className="px-8 py-4 text-lg" asChild>
-              <Link to="/advertise">
-                <Activity className="mr-2" />
-                List Your Ranch
-              </Link>
-            </Button>
           </div>
         </div>
       </section>
