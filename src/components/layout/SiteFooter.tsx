@@ -68,46 +68,22 @@ export function SiteFooter() {
           </div>
           
           <div>
-            <h3 className="font-serif font-semibold mb-4">More States</h3>
+            <h3 className="font-serif font-semibold mb-4">Resources</h3>
             <ul className="space-y-2">
               <li>
                 <Link 
-                  to="/ranches/new-mexico" 
+                  to="/guides" 
                   className="text-primary-foreground/80 hover:text-primary-foreground transition-smooth"
                 >
-                  New Mexico
+                  Guides
                 </Link>
               </li>
               <li>
                 <Link 
-                  to="/ranches/south-dakota" 
+                  to="/advertise" 
                   className="text-primary-foreground/80 hover:text-primary-foreground transition-smooth"
                 >
-                  South Dakota
-                </Link>
-              </li>
-              <li>
-                <Link 
-                  to="/ranches/texas" 
-                  className="text-primary-foreground/80 hover:text-primary-foreground transition-smooth"
-                >
-                  Texas
-                </Link>
-              </li>
-              <li>
-                <Link 
-                  to="/ranches/utah" 
-                  className="text-primary-foreground/80 hover:text-primary-foreground transition-smooth"
-                >
-                  Utah
-                </Link>
-              </li>
-              <li>
-                <Link 
-                  to="/ranches/wyoming" 
-                  className="text-primary-foreground/80 hover:text-primary-foreground transition-smooth"
-                >
-                  Wyoming
+                  Advertise
                 </Link>
               </li>
             </ul>
