@@ -1,19 +1,19 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import { Button } from '@/components/ui/button';
+import logo from '@/assets/logo.png';
 
 export function SiteHeader() {
   return (
     <header className="border-b border-border bg-card shadow-card">
       <div className="container mx-auto px-4 py-4">
         <div className="flex items-center justify-between">
-          <Link to="/" className="flex items-center space-x-2">
-            <div className="text-2xl font-display font-bold text-primary">
-              DudeRanch
-            </div>
-            <div className="text-sm font-serif text-muted-foreground hidden sm:block">
-              Directory
-            </div>
+          <Link to="/" className="flex items-center">
+            <img 
+              src={logo} 
+              alt="Dude Ranch Retreats" 
+              className="h-12 w-auto"
+            />
           </Link>
           
           <nav className="hidden md:flex items-center space-x-6">
