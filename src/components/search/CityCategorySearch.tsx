@@ -36,7 +36,7 @@ export function CityCategorySearch() {
   useEffect(() => {
     const loadData = async () => {
       // Load ranches
-      const { data: ranchesData } = await (supabase as any)
+      const { data: ranchesData } = await supabase
         .from('ranches')
         .select(`
           id,
@@ -48,7 +48,7 @@ export function CityCategorySearch() {
         .order('name');
 
       // Load states with ranch counts
-      const { data: statesData } = await (supabase as any)
+      const { data: statesData } = await supabase
         .from('states')
         .select('id, name, slug')
         .order('name');
@@ -56,7 +56,7 @@ export function CityCategorySearch() {
       if (statesData) {
         const statesWithCounts = await Promise.all(
           statesData.map(async (state) => {
-            const { count } = await (supabase as any)
+            const { count } = await supabase
               .from('ranches')
               .select('*', { count: 'exact', head: true })
               .eq('state_id', state.id);
