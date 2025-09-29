@@ -18,10 +18,8 @@ import heroMountainRanch from '@/assets/hero-mountain-ranch.jpg';
 import familyHorseback from '@/assets/family-horseback.jpg';
 import ranchLodge from '@/assets/ranch-lodge.jpg';
 import cattleDrive from '@/assets/cattle-drive.jpg';
-
 const Index = () => {
   const [featuredListings, setFeaturedListings] = useState<Listing[]>([]);
-
   useEffect(() => {
     const loadData = async () => {
       const ranches = await getRanches();
@@ -36,26 +34,18 @@ const Index = () => {
     };
     loadData();
   }, []);
-
   const metaData = getHomePageMeta();
-
-  return (
-    <>
+  return <>
       <MetaTags meta={metaData} />
       
       {/* Hero Section */}
       <section className="relative bg-gradient-hero overflow-hidden min-h-screen flex items-center">
-        <div 
-          className="absolute inset-0 bg-cover bg-center bg-no-repeat"
-          style={{ 
-            backgroundImage: `linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.5)), url(${heroMountainRanch})` 
-          }}
-        />
+        <div className="absolute inset-0 bg-cover bg-center bg-no-repeat" style={{
+        backgroundImage: `linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.5)), url(${heroMountainRanch})`
+      }} />
         <div className="relative z-10 container mx-auto px-4 py-32 text-center text-white">
           <div className="mb-4">
-            <Badge variant="outline" className="bg-white/10 text-white border-white/30 text-sm px-4 py-2">
-              Est. 1926 • Authentic Western Experiences
-            </Badge>
+            
           </div>
           <h1 className="text-6xl md:text-8xl font-display font-bold mb-8 drop-shadow-2xl leading-tight">
             Discover Your Perfect
@@ -105,11 +95,7 @@ const Index = () => {
           <div className="grid grid-cols-1 md:grid-cols-3 gap-12">
             <div className="text-center group">
               <div className="relative mb-8 overflow-hidden rounded-2xl">
-                <img 
-                  src={familyHorseback} 
-                  alt="Family horseback riding experience" 
-                  className="w-full h-64 object-cover group-hover:scale-105 transition-transform duration-300"
-                />
+                <img src={familyHorseback} alt="Family horseback riding experience" className="w-full h-64 object-cover group-hover:scale-105 transition-transform duration-300" />
               </div>
               <h3 className="text-2xl font-serif font-bold mb-4">Authentic Experiences</h3>
               <p className="text-muted-foreground leading-relaxed">
@@ -119,11 +105,7 @@ const Index = () => {
 
             <div className="text-center group">
               <div className="relative mb-8 overflow-hidden rounded-2xl">
-                <img 
-                  src={ranchLodge} 
-                  alt="Comfortable ranch accommodations" 
-                  className="w-full h-64 object-cover group-hover:scale-105 transition-transform duration-300"
-                />
+                <img src={ranchLodge} alt="Comfortable ranch accommodations" className="w-full h-64 object-cover group-hover:scale-105 transition-transform duration-300" />
               </div>
               <h3 className="text-2xl font-serif font-bold mb-4">Comfort & Quality</h3>
               <p className="text-muted-foreground leading-relaxed">
@@ -133,11 +115,7 @@ const Index = () => {
 
             <div className="text-center group">
               <div className="relative mb-8 overflow-hidden rounded-2xl">
-                <img 
-                  src={cattleDrive} 
-                  alt="Working ranch activities" 
-                  className="w-full h-64 object-cover group-hover:scale-105 transition-transform duration-300"
-                />
+                <img src={cattleDrive} alt="Working ranch activities" className="w-full h-64 object-cover group-hover:scale-105 transition-transform duration-300" />
               </div>
               <h3 className="text-2xl font-serif font-bold mb-4">Real Ranch Work</h3>
               <p className="text-muted-foreground leading-relaxed">
@@ -164,21 +142,11 @@ const Index = () => {
             </p>
           </div>
 
-          {featuredListings.length > 0 ? (
-            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-              {featuredListings.map((listing) => (
-                <ListingCard 
-                  key={listing.id} 
-                  listing={listing} 
-                  showCategory={true}
-                />
-              ))}
-            </div>
-          ) : (
-            <div className="text-center py-12">
+          {featuredListings.length > 0 ? <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+              {featuredListings.map(listing => <ListingCard key={listing.id} listing={listing} showCategory={true} />)}
+            </div> : <div className="text-center py-12">
               <p className="text-muted-foreground text-lg">Loading featured ranches...</p>
-            </div>
-          )}
+            </div>}
           
           <div className="text-center mt-12">
             <Button variant="outline" size="lg" asChild>
@@ -206,8 +174,6 @@ const Index = () => {
           <StateSearch />
         </div>
       </section>
-    </>
-  );
+    </>;
 };
-
 export default Index;
