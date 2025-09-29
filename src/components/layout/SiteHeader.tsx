@@ -24,12 +24,6 @@ export function SiteHeader() {
               Guides
             </Link>
             <Link 
-              to="/admin/scrape" 
-              className="text-foreground hover:text-primary transition-smooth font-medium"
-            >
-              Ranch Scraper
-            </Link>
-            <Link 
               to="/advertise" 
               className="text-foreground hover:text-primary transition-smooth font-medium"
             >
