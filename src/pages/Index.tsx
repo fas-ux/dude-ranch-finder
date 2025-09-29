@@ -13,8 +13,11 @@ import StateSearch from '@/components/search/StateSearch';
 import { City, Category, Listing } from '@/lib/types';
 import { Star, ArrowRight, MapPin, Activity } from 'lucide-react';
 
-// Import hero image
-import heroRanch from '@/assets/hero-ranch.jpg';
+// Import images
+import heroMountainRanch from '@/assets/hero-mountain-ranch.jpg';
+import familyHorseback from '@/assets/family-horseback.jpg';
+import ranchLodge from '@/assets/ranch-lodge.jpg';
+import cattleDrive from '@/assets/cattle-drive.jpg';
 
 const Index = () => {
   const [featuredListings, setFeaturedListings] = useState<Listing[]>([]);
@@ -41,67 +44,165 @@ const Index = () => {
       <MetaTags meta={metaData} />
       
       {/* Hero Section */}
-      <section className="relative bg-gradient-hero overflow-hidden">
+      <section className="relative bg-gradient-hero overflow-hidden min-h-screen flex items-center">
         <div 
           className="absolute inset-0 bg-cover bg-center bg-no-repeat"
           style={{ 
-            backgroundImage: `linear-gradient(rgba(0,0,0,0.4), rgba(0,0,0,0.6)), url(${heroRanch})` 
+            backgroundImage: `linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.5)), url(${heroMountainRanch})` 
           }}
         />
-        <div className="relative z-10 container mx-auto px-4 py-24 text-center text-white">
-          <h1 className="text-5xl md:text-7xl font-display font-bold mb-6 drop-shadow-lg">
-            Find Your Perfect
-            <span className="block text-accent">Dude Ranch</span>
+        <div className="relative z-10 container mx-auto px-4 py-32 text-center text-white">
+          <div className="mb-4">
+            <Badge variant="outline" className="bg-white/10 text-white border-white/30 text-sm px-4 py-2">
+              Est. 1926 • Authentic Western Experiences
+            </Badge>
+          </div>
+          <h1 className="text-6xl md:text-8xl font-display font-bold mb-8 drop-shadow-2xl leading-tight">
+            Discover Your Perfect
+            <span className="block text-accent bg-gradient-to-r from-accent to-accent-foreground bg-clip-text text-transparent">
+              Dude Ranch Adventure
+            </span>
           </h1>
-          <p className="text-xl md:text-2xl font-serif mb-8 max-w-2xl mx-auto opacity-90">
-            Discover authentic Western experiences at the finest dude ranches across America
+          <p className="text-xl md:text-2xl font-serif mb-12 max-w-3xl mx-auto opacity-95 leading-relaxed">
+            From horseback rides through mountain trails to authentic cowboy experiences, 
+            find your ideal Western getaway at America's finest dude ranches
           </p>
           
-          <div className="mb-8">
+          <div className="mb-12 max-w-4xl mx-auto">
             <CityCategorySearch />
           </div>
 
-          <div className="flex flex-col sm:flex-row gap-4 justify-center items-center">
-            <Button variant="rustic" size="lg" asChild>
+          <div className="flex flex-col sm:flex-row gap-6 justify-center items-center">
+            <Button variant="rustic" size="lg" className="px-8 py-4 text-lg" asChild>
               <Link to="#featured-ranches">
-                Explore Ranches
+                <Star className="mr-2" />
+                Explore Featured Ranches
                 <ArrowRight className="ml-2" />
               </Link>
             </Button>
-            <Button variant="western" size="lg" asChild>
-              <Link to="/advertise">List Your Ranch</Link>
+            <Button variant="western" size="lg" className="px-8 py-4 text-lg" asChild>
+              <Link to="/advertise">
+                <Activity className="mr-2" />
+                List Your Ranch
+              </Link>
             </Button>
+          </div>
+        </div>
+      </section>
+
+      {/* Why Choose Us Section */}
+      <section className="py-20 bg-background">
+        <div className="container mx-auto px-4">
+          <div className="text-center mb-16">
+            <h2 className="text-4xl md:text-5xl font-serif font-bold text-foreground mb-6">
+              Why Choose Our Ranch Directory?
+            </h2>
+            <p className="text-xl text-muted-foreground max-w-3xl mx-auto">
+              We've been connecting families with authentic dude ranch experiences since 1998
+            </p>
+          </div>
+
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-12">
+            <div className="text-center group">
+              <div className="relative mb-8 overflow-hidden rounded-2xl">
+                <img 
+                  src={familyHorseback} 
+                  alt="Family horseback riding experience" 
+                  className="w-full h-64 object-cover group-hover:scale-105 transition-transform duration-300"
+                />
+              </div>
+              <h3 className="text-2xl font-serif font-bold mb-4">Authentic Experiences</h3>
+              <p className="text-muted-foreground leading-relaxed">
+                Hand-picked ranches offering genuine Western adventures, from cattle drives to campfire stories under starlit skies
+              </p>
+            </div>
+
+            <div className="text-center group">
+              <div className="relative mb-8 overflow-hidden rounded-2xl">
+                <img 
+                  src={ranchLodge} 
+                  alt="Comfortable ranch accommodations" 
+                  className="w-full h-64 object-cover group-hover:scale-105 transition-transform duration-300"
+                />
+              </div>
+              <h3 className="text-2xl font-serif font-bold mb-4">Comfort & Quality</h3>
+              <p className="text-muted-foreground leading-relaxed">
+                Premium accommodations that blend rustic charm with modern amenities for the perfect Western getaway
+              </p>
+            </div>
+
+            <div className="text-center group">
+              <div className="relative mb-8 overflow-hidden rounded-2xl">
+                <img 
+                  src={cattleDrive} 
+                  alt="Working ranch activities" 
+                  className="w-full h-64 object-cover group-hover:scale-105 transition-transform duration-300"
+                />
+              </div>
+              <h3 className="text-2xl font-serif font-bold mb-4">Real Ranch Work</h3>
+              <p className="text-muted-foreground leading-relaxed">
+                Experience the authentic cowboy lifestyle with real ranch activities and learn time-honored Western traditions
+              </p>
+            </div>
           </div>
         </div>
       </section>
 
       {/* Featured Ranches */}
-      <section id="featured-ranches" className="py-16 bg-gradient-warm">
+      <section id="featured-ranches" className="py-20 bg-gradient-warm">
         <div className="container mx-auto px-4">
-          <div className="text-center mb-12">
-            <h2 className="text-3xl md:text-4xl font-serif font-bold text-foreground mb-4">
+          <div className="text-center mb-16">
+            <Badge variant="outline" className="mb-4 px-4 py-2">
+              ⭐ Premium Selection
+            </Badge>
+            <h2 className="text-4xl md:text-5xl font-serif font-bold text-foreground mb-6">
               Featured Dude Ranches
             </h2>
-            <p className="text-lg text-muted-foreground max-w-2xl mx-auto">
-              Hand-picked premium ranches offering exceptional Western experiences
+            <p className="text-xl text-muted-foreground max-w-3xl mx-auto leading-relaxed">
+              Discover our carefully curated collection of the finest dude ranches, each offering 
+              unique Western experiences and unforgettable adventures
             </p>
           </div>
 
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-            {featuredListings.map((listing) => (
-              <ListingCard 
-                key={listing.id} 
-                listing={listing} 
-                showCategory={true}
-              />
-            ))}
+          {featuredListings.length > 0 ? (
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+              {featuredListings.map((listing) => (
+                <ListingCard 
+                  key={listing.id} 
+                  listing={listing} 
+                  showCategory={true}
+                />
+              ))}
+            </div>
+          ) : (
+            <div className="text-center py-12">
+              <p className="text-muted-foreground text-lg">Loading featured ranches...</p>
+            </div>
+          )}
+          
+          <div className="text-center mt-12">
+            <Button variant="outline" size="lg" asChild>
+              <Link to="#browse-by-state">
+                <MapPin className="mr-2" />
+                Browse All Ranches
+              </Link>
+            </Button>
           </div>
         </div>
       </section>
 
       {/* Find Ranch by State */}
-      <section className="py-16">
+      <section id="browse-by-state" className="py-20 bg-background">
         <div className="container mx-auto px-4">
+          <div className="text-center mb-16">
+            <h2 className="text-4xl md:text-5xl font-serif font-bold text-foreground mb-6">
+              Find Ranches by State
+            </h2>
+            <p className="text-xl text-muted-foreground max-w-3xl mx-auto">
+              Explore dude ranches across America's most beautiful landscapes, 
+              from Montana's Big Sky country to Texas hill country
+            </p>
+          </div>
           <StateSearch />
         </div>
       </section>
