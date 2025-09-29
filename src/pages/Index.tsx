@@ -143,6 +143,17 @@ const Index = () => {
                 Browse All Ranches
               </Link>
             </Button>
+            <div className="mt-8 flex flex-wrap justify-center gap-4">
+              <Link to="/guides/best-dude-ranches-for-families" className="text-primary hover:underline">
+                Family Ranch Guide
+              </Link>
+              <Link to="/guides/luxury-dude-ranch-experiences" className="text-primary hover:underline">
+                Luxury Ranches
+              </Link>
+              <Link to="/blog" className="text-primary hover:underline">
+                Ranch Travel Blog
+              </Link>
+            </div>
           </div>
         </div>
       </section>

@@ -1,10 +1,24 @@
 import React from 'react';
 import { Button } from '@/components/ui/button';
 import { Card, CardContent } from '@/components/ui/card';
+import { MetaTags } from '@/components/seo/MetaTags';
+import { Breadcrumbs } from '@/components/navigation/Breadcrumbs';
 
 const AdvertisePage = () => {
+  const metaData = {
+    title: "List Your Dude Ranch | Advertise with Dude Ranch Directory",
+    description: "Reach thousands of travelers looking for authentic Western experiences. Advertise your dude ranch on the premier directory for ranch vacations.",
+    canonical: "https://duderanch-directory.com/advertise"
+  };
+
+  const breadcrumbItems = [
+    { label: "Advertise Your Ranch" }
+  ];
+
   return (
     <div className="container mx-auto px-4 py-12">
+      <MetaTags meta={metaData} />
+      <Breadcrumbs items={breadcrumbItems} />
       <div className="text-center mb-12">
         <h1 className="text-4xl font-serif font-bold text-foreground mb-4">
           Advertise Your Dude Ranch

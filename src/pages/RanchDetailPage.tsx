@@ -2,6 +2,7 @@ import { useEffect, useState } from 'react';
 import { useParams, Link } from 'react-router-dom';
 import { Helmet } from 'react-helmet-async';
 import { getRanchBySlug, getRanchesByState } from '@/lib/data/ranches';
+import { Breadcrumbs } from '@/components/navigation/Breadcrumbs';
 import { Listing } from '@/lib/types';
 import { SiteHeader } from '@/components/layout/SiteHeader';
 import { SiteFooter } from '@/components/layout/SiteFooter';

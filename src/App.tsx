@@ -16,6 +16,8 @@ import AdvertisePage from "./pages/AdvertisePage";
 import AdminScrape from "./pages/AdminScrape";
 import StateRanchesPage from "./pages/StateRanchesPage";
 import RanchDetailPage from "./pages/RanchDetailPage";
+import BlogPage from "./pages/BlogPage";
+import ArticlePage from "./pages/ArticlePage";
 import NotFound from "./pages/NotFound";
 
 const queryClient = new QueryClient();
@@ -34,6 +36,8 @@ const App = () => (
               <Routes>
                 <Route path="/" element={<Index />} />
                 <Route path="/admin/scrape" element={<AdminScrape />} />
+                <Route path="/blog" element={<BlogPage />} />
+                <Route path="/blog/:slug" element={<ArticlePage />} />
                 <Route path="/guides/:slug" element={<GuidePage />} />
                 <Route path="/advertise" element={<AdvertisePage />} />
                 <Route path="/:state/dude-ranches" element={<StateRanchesPage />} />
