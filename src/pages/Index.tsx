@@ -49,9 +49,7 @@ const Index = () => {
           </div>
           <h1 className="text-6xl md:text-8xl font-display font-bold mb-8 drop-shadow-2xl leading-tight">
             Discover Your Perfect
-            <span className="block text-accent bg-gradient-to-r from-accent to-accent-foreground bg-clip-text text-transparent">
-              Dude Ranch Adventure
-            </span>
+            <span className="block bg-gradient-to-r from-accent to-accent-foreground bg-clip-text text-amber-800">Dude Ranch Retreat</span>
           </h1>
           <p className="text-xl md:text-2xl font-serif mb-12 max-w-3xl mx-auto opacity-95 leading-relaxed">
             From horseback rides through mountain trails to authentic cowboy experiences, 
@@ -78,12 +76,8 @@ const Index = () => {
       <section className="py-20 bg-background">
         <div className="container mx-auto px-4">
           <div className="text-center mb-16">
-            <h2 className="text-4xl md:text-5xl font-serif font-bold text-foreground mb-6">
-              Why Choose Our Ranch Directory?
-            </h2>
-            <p className="text-xl text-muted-foreground max-w-3xl mx-auto">
-              We've been connecting families with authentic dude ranch experiences since 1998
-            </p>
+            <h2 className="text-4xl md:text-5xl font-serif font-bold text-foreground mb-6">Why Dude Ranch Retreats?</h2>
+            <p className="text-xl text-muted-foreground max-w-3xl mx-auto">Connecting families with authentic dude ranch experiences</p>
           </div>
 
           <div className="grid grid-cols-1 md:grid-cols-3 gap-12">
