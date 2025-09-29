@@ -153,3 +153,62 @@ export async function getRanchesByState(stateSlug: string): Promise<Listing[]> {
     }
   }));
 }
+
+export async function getSimilarRanches(ranchId: string, stateId: string | null, limit = 3): Promise<Listing[]> {
+  const { data, error } = await (supabase as any)
+    .from('ranches')
+    .select(`
+      *,
+      state:states(name, code, slug)
+    `)
+    .neq('id', ranchId);
+
+  if (error) {
+    console.error('Error fetching similar ranches:', error);
+    return [];
+  }
+
+  const allRanches = data.map(ranch => ({
+    id: ranch.id,
+    name: ranch.name,
+    slug: ranch.slug,
+    categoryId: '',
+    cityId: ranch.state_id,
+    phone: ranch.phone || undefined,
+    website: ranch.website || undefined,
+    email: ranch.email || undefined,
+    address: ranch.address || '',
+    shortDesc: ranch.description?.substring(0, 150) || '',
+    longDescMd: ranch.description || '',
+    rating: 4.5,
+    sourcesJson: {},
+    isFeatured: ranch.is_featured || false,
+    priceBand: ranch.price_band || undefined,
+    amenities: ranch.amenities || [],
+    lat: ranch.latitude || undefined,
+    lng: ranch.longitude || undefined,
+    postcode: ranch.postal_code || undefined,
+    createdAt: ranch.created_at,
+    updatedAt: ranch.updated_at,
+    city: {
+      id: ranch.state_id,
+      name: ranch.city || '',
+      state: ranch.state?.name || '',
+      slug: ranch.state?.slug || '',
+      lat: 0,
+      lng: 0,
+      population: 0,
+      status: 'active' as const,
+      createdAt: ranch.created_at
+    }
+  }));
+
+  // Filter by same state first, then fallback to all ranches
+  const sameStateRanches = allRanches.filter(r => r.cityId === stateId);
+  const candidates = sameStateRanches.length >= limit ? sameStateRanches : allRanches;
+
+  // Simple similarity based on matching amenities
+  return candidates
+    .slice(0, limit)
+    .sort((a, b) => a.name.localeCompare(b.name));
+}

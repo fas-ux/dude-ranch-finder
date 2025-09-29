@@ -14,6 +14,8 @@ import ListingPage from "./pages/ListingPage";
 import GuidePage from "./pages/GuidePage"; 
 import AdvertisePage from "./pages/AdvertisePage";
 import AdminScrape from "./pages/AdminScrape";
+import StateRanchesPage from "./pages/StateRanchesPage";
+import RanchDetailPage from "./pages/RanchDetailPage";
 import NotFound from "./pages/NotFound";
 
 const queryClient = new QueryClient();
@@ -34,6 +36,8 @@ const App = () => (
                 <Route path="/admin/scrape" element={<AdminScrape />} />
                 <Route path="/guides/:slug" element={<GuidePage />} />
                 <Route path="/advertise" element={<AdvertisePage />} />
+                <Route path="/:state/dude-ranches" element={<StateRanchesPage />} />
+                <Route path="/:state/:slug" element={<RanchDetailPage />} />
                 <Route path="/:state/:city" element={<CityPage />} />
                 <Route path="/:state/:city/:category" element={<CityCategoryPage />} />
                 <Route path="/:state/:city/:category/:slug" element={<ListingPage />} />
