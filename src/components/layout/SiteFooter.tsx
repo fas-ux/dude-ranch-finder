@@ -6,8 +6,8 @@ export function SiteFooter() {
   return (
     <footer className="bg-primary text-primary-foreground mt-16">
       <div className="container mx-auto px-4 py-12">
-        <div className="grid grid-cols-1 md:grid-cols-4 gap-8">
-          <div className="md:col-span-2">
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+          <div>
             <div className="mb-4">
               <img 
                 src={drrLogo} 
@@ -22,7 +22,7 @@ export function SiteFooter() {
           </div>
           
           <div>
-            <h3 className="font-serif font-semibold mb-4">Explore States</h3>
+            <h3 className="font-serif font-semibold mb-4">Explore Ranches</h3>
             <ul className="space-y-2">
               <li>
                 <Link 
@@ -64,26 +64,44 @@ export function SiteFooter() {
                   Nevada
                 </Link>
               </li>
-            </ul>
-          </div>
-          
-          <div>
-            <h3 className="font-serif font-semibold mb-4">Resources</h3>
-            <ul className="space-y-2">
               <li>
                 <Link 
-                  to="/guides" 
+                  to="/ranches/new-mexico" 
                   className="text-primary-foreground/80 hover:text-primary-foreground transition-smooth"
                 >
-                  Guides
+                  New Mexico
                 </Link>
               </li>
               <li>
                 <Link 
-                  to="/advertise" 
+                  to="/ranches/south-dakota" 
                   className="text-primary-foreground/80 hover:text-primary-foreground transition-smooth"
                 >
-                  Advertise
+                  South Dakota
+                </Link>
+              </li>
+              <li>
+                <Link 
+                  to="/ranches/texas" 
+                  className="text-primary-foreground/80 hover:text-primary-foreground transition-smooth"
+                >
+                  Texas
+                </Link>
+              </li>
+              <li>
+                <Link 
+                  to="/ranches/utah" 
+                  className="text-primary-foreground/80 hover:text-primary-foreground transition-smooth"
+                >
+                  Utah
+                </Link>
+              </li>
+              <li>
+                <Link 
+                  to="/ranches/wyoming" 
+                  className="text-primary-foreground/80 hover:text-primary-foreground transition-smooth"
+                >
+                  Wyoming
                 </Link>
               </li>
             </ul>
