@@ -1,5 +1,6 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
+import drrLogo from '@/assets/drr-logo.png';
 
 export function SiteFooter() {
   return (
@@ -7,8 +8,12 @@ export function SiteFooter() {
       <div className="container mx-auto px-4 py-12">
         <div className="grid grid-cols-1 md:grid-cols-4 gap-8">
           <div className="md:col-span-2">
-            <div className="text-2xl font-display font-bold mb-4">
-              DudeRanch Directory
+            <div className="mb-4">
+              <img 
+                src={drrLogo} 
+                alt="Dude Ranch Retreats" 
+                className="h-12 w-auto"
+              />
             </div>
             <p className="text-primary-foreground/80 max-w-md">
               Discover authentic dude ranches and Western experiences across the United States. 
@@ -17,52 +22,92 @@ export function SiteFooter() {
           </div>
           
           <div>
-            <h3 className="font-serif font-semibold mb-4">Explore</h3>
+            <h3 className="font-serif font-semibold mb-4">Explore States</h3>
             <ul className="space-y-2">
               <li>
                 <Link 
-                  to="/wyoming/jackson" 
+                  to="/ranches/arizona" 
                   className="text-primary-foreground/80 hover:text-primary-foreground transition-smooth"
                 >
-                  Jackson, Wyoming
+                  Arizona
                 </Link>
               </li>
               <li>
                 <Link 
-                  to="/wyoming/cody" 
+                  to="/ranches/colorado" 
                   className="text-primary-foreground/80 hover:text-primary-foreground transition-smooth"
                 >
-                  Cody, Wyoming
+                  Colorado
                 </Link>
               </li>
               <li>
                 <Link 
-                  to="/texas/bandera" 
+                  to="/ranches/idaho" 
                   className="text-primary-foreground/80 hover:text-primary-foreground transition-smooth"
                 >
-                  Bandera, Texas
+                  Idaho
+                </Link>
+              </li>
+              <li>
+                <Link 
+                  to="/ranches/montana" 
+                  className="text-primary-foreground/80 hover:text-primary-foreground transition-smooth"
+                >
+                  Montana
+                </Link>
+              </li>
+              <li>
+                <Link 
+                  to="/ranches/nevada" 
+                  className="text-primary-foreground/80 hover:text-primary-foreground transition-smooth"
+                >
+                  Nevada
                 </Link>
               </li>
             </ul>
           </div>
           
           <div>
-            <h3 className="font-serif font-semibold mb-4">Resources</h3>
+            <h3 className="font-serif font-semibold mb-4">More States</h3>
             <ul className="space-y-2">
               <li>
                 <Link 
-                  to="/guides" 
+                  to="/ranches/new-mexico" 
                   className="text-primary-foreground/80 hover:text-primary-foreground transition-smooth"
                 >
-                  Guides
+                  New Mexico
                 </Link>
               </li>
               <li>
                 <Link 
-                  to="/advertise" 
+                  to="/ranches/south-dakota" 
                   className="text-primary-foreground/80 hover:text-primary-foreground transition-smooth"
                 >
-                  Advertise
+                  South Dakota
+                </Link>
+              </li>
+              <li>
+                <Link 
+                  to="/ranches/texas" 
+                  className="text-primary-foreground/80 hover:text-primary-foreground transition-smooth"
+                >
+                  Texas
+                </Link>
+              </li>
+              <li>
+                <Link 
+                  to="/ranches/utah" 
+                  className="text-primary-foreground/80 hover:text-primary-foreground transition-smooth"
+                >
+                  Utah
+                </Link>
+              </li>
+              <li>
+                <Link 
+                  to="/ranches/wyoming" 
+                  className="text-primary-foreground/80 hover:text-primary-foreground transition-smooth"
+                >
+                  Wyoming
                 </Link>
               </li>
             </ul>
