@@ -1,1 +1,4 @@
 project_id = "adifrdyeoxtwpgrtbubo"
+
+[functions.scrape-ranches]
+verify_jwt = false

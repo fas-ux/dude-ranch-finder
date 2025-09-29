@@ -1,6 +1,7 @@
 // Listing data functions
 import { Listing, City, Category } from '../types';
 import { mockListings, mockCities, mockCategories, mockMedia } from './mock-data';
+import { getRanches } from './ranches';
 
 interface GetListingsOptions {
   featuredFirst?: boolean;
@@ -104,7 +105,15 @@ export async function getTopListingsForCity(cityId: string, limit: number): Prom
 }
 
 export async function getFeaturedListings(limit?: number): Promise<Listing[]> {
-  let listings = mockListings.filter(l => l.isFeatured);
+  // Get ranches from database
+  const ranches = await getRanches();
+  let listings = ranches.filter(l => l.isFeatured);
+  
+  // If no featured ranches in DB, fallback to mock data
+  if (listings.length === 0) {
+    listings = mockListings.filter(l => l.isFeatured);
+  }
+  
   listings.sort((a, b) => b.rating - a.rating);
   
   if (limit) {

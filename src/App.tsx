@@ -13,6 +13,7 @@ import CityCategoryPage from "./pages/CityCategoryPage";
 import ListingPage from "./pages/ListingPage";
 import GuidePage from "./pages/GuidePage"; 
 import AdvertisePage from "./pages/AdvertisePage";
+import AdminScrape from "./pages/AdminScrape";
 import NotFound from "./pages/NotFound";
 
 const queryClient = new QueryClient();
@@ -30,6 +31,7 @@ const App = () => (
             <main className="flex-1">
               <Routes>
                 <Route path="/" element={<Index />} />
+                <Route path="/admin/scrape" element={<AdminScrape />} />
                 <Route path="/guides/:slug" element={<GuidePage />} />
                 <Route path="/advertise" element={<AdvertisePage />} />
                 <Route path="/:state/:city" element={<CityPage />} />
