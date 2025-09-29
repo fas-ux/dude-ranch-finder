@@ -84,23 +84,27 @@ export const mockListings: Listing[] = [
     cityId: '1',
     phone: '(307) 733-2183',
     website: 'https://trianglex.com',
+    email: 'info@trianglex.com',
     address: 'Moose, WY 83012',
     shortDesc: 'Historic dude ranch in Grand Teton National Park offering authentic Western experiences.',
-    longDescMd: `# Triangle X Ranch
+    longDescMd: `## Welcome to Triangle X Ranch
 
-Located in the heart of Grand Teton National Park, Triangle X Ranch has been welcoming guests since 1926. This historic dude ranch offers an authentic Western experience with comfortable accommodations, hearty meals, and unforgettable adventures.
+Located in the heart of Grand Teton National Park, Triangle X Ranch has been welcoming guests since 1926. This historic dude ranch offers an authentic Western experience with comfortable accommodations, hearty meals, and unforgettable adventures in one of America's most spectacular settings.
 
-## Activities
-- Horseback riding through Grand Teton National Park
-- Wildlife viewing and photography
-- Fly fishing on the Snake River
-- Evening entertainment and campfires
-
-## Accommodations
-Our rustic log cabins feature modern amenities while maintaining their historic charm.`,
+Our ranch sits on pristine wilderness land with breathtaking views of the Teton Range. As the only dude ranch operating within a national park, we offer unparalleled access to wildlife viewing and outdoor adventures that create memories lasting a lifetime.`,
     rating: 4.8,
     sourcesJson: { tripadvisor: 4.5, google: 4.9 },
     isFeatured: true,
+    priceBand: '$$$',
+    minStay: '4 nights',
+    seasonality: {
+      openMonths: ['May', 'June', 'July', 'August', 'September'],
+      notes: 'Peak season July-August'
+    },
+    amenities: ['horseback riding', 'fly fishing', 'wildlife viewing', 'hiking trails', 'campfire programs', 'family activities'],
+    uniqueHooks: ['only ranch in Grand Teton National Park', 'historic 1926 establishment', 'Snake River access'],
+    lat: 43.6532,
+    lng: -110.7002,
     createdAt: '2024-01-01T00:00:00Z',
     updatedAt: '2024-01-01T00:00:00Z',
   },
@@ -112,80 +116,59 @@ Our rustic log cabins feature modern amenities while maintaining their historic 
     cityId: '1',
     phone: '(307) 543-2477',
     website: 'https://heartsix.com',
+    email: 'info@heartsix.com',
     address: 'Moran, WY 83013',
     shortDesc: 'Family-owned guest ranch offering horseback adventures in the Greater Yellowstone Ecosystem.',
-    longDescMd: `# Heart Six Ranch
+    longDescMd: `## Heart Six Ranch Experience
 
-A family-owned and operated guest ranch located just outside Grand Teton National Park. Heart Six Ranch offers authentic horseback adventures and comfortable accommodations in a pristine wilderness setting.
+A family-owned and operated guest ranch located just outside Grand Teton National Park, Heart Six Ranch offers authentic horseback adventures and comfortable accommodations in a pristine wilderness setting. Our ranch combines over a century of ranching heritage with modern hospitality.
 
-## What Makes Us Special
-- Over 100 years of ranching heritage
-- Access to pristine wilderness areas
-- Professional wranglers and guides
-- All-inclusive packages available`,
+Experience the American West as it was meant to be - with vast open spaces, majestic mountain views, and the freedom that comes from horseback exploration of untouched wilderness areas.`,
     rating: 4.7,
     sourcesJson: { tripadvisor: 4.6, google: 4.8 },
     isFeatured: true,
+    priceBand: '$$–$$$',
+    minStay: '3 nights',
+    seasonality: {
+      openMonths: ['May', 'June', 'July', 'August', 'September', 'October'],
+      notes: 'Extended season with fall programs'
+    },
+    amenities: ['horseback riding', 'pack trips', 'fishing', 'hiking', 'wildlife photography', 'evening entertainment'],
+    uniqueHooks: ['100+ years ranching heritage', 'backcountry pack trips', 'professional wranglers'],
+    lat: 43.8420,
+    lng: -110.5298,
     createdAt: '2024-01-01T00:00:00Z',
     updatedAt: '2024-01-01T00:00:00Z',
   },
   {
     id: '3',
-    name: 'Pahaska Tepee Resort',
-    slug: 'pahaska-tepee-resort',
-    categoryId: '1',
-    cityId: '2',
-    phone: '(307) 527-7701',
-    website: 'https://pahaska.com',
-    address: '183 Yellowstone Hwy, Cody, WY 82414',
-    shortDesc: 'Historic lodge and ranch at the East Gate of Yellowstone National Park.',
-    longDescMd: `# Pahaska Tepee Resort
-
-Built in 1904 by Buffalo Bill Cody, Pahaska Tepee Resort sits at the historic East Gate of Yellowstone National Park. This unique destination combines Western hospitality with wilderness adventure.
-
-## Historic Significance
-- Original hunting lodge of Buffalo Bill Cody
-- Gateway to Yellowstone since 1904
-- Listed on the National Register of Historic Places
-
-## Modern Amenities
-- Comfortable lodge rooms and cabins
-- Restaurant featuring regional cuisine
-- Gift shop with Western memorabilia`,
-    rating: 4.5,
-    sourcesJson: { tripadvisor: 4.3, google: 4.7 },
-    isFeatured: false,
-    createdAt: '2024-01-01T00:00:00Z',
-    updatedAt: '2024-01-01T00:00:00Z',
-  },
-  {
-    id: '4',
     name: 'Dixie Dude Ranch',
     slug: 'dixie-dude-ranch',
     categoryId: '1',
     cityId: '3',
     phone: '(830) 796-7771',
     website: 'https://dixieduderanch.com',
+    email: 'info@dixieduderanch.com',
     address: 'Bandera, TX 78003',
     shortDesc: 'Texas Hill Country dude ranch offering authentic cowboy experiences since 1901.',
-    longDescMd: `# Dixie Dude Ranch
+    longDescMd: `## Dixie Dude Ranch
 
-Operating since 1901, Dixie Dude Ranch is one of the oldest continuously operating dude ranches in Texas. Located in the beautiful Hill Country, we offer authentic cowboy experiences with Southern hospitality.
+Operating since 1901, Dixie Dude Ranch is one of the oldest continuously operating dude ranches in Texas. Located in the beautiful Hill Country, we offer authentic cowboy experiences with genuine Southern hospitality and traditional Western values.
 
-## Ranch Activities
-- Horseback riding through Hill Country trails
-- Cattle work and ranch operations
-- Swimming in the Medina River
-- Evening entertainment and dancing
-
-## Texas Traditions
-- Authentic chuck wagon dinners
-- Western entertainment and music
-- Rodeo demonstrations
-- Campfire stories and s'mores`,
+Experience real ranch life where guests participate in daily operations, enjoy trail rides through scenic countryside, and gather around evening campfires for storytelling and music that celebrates our rich ranching heritage.`,
     rating: 4.6,
     sourcesJson: { tripadvisor: 4.4, google: 4.8 },
     isFeatured: true,
+    priceBand: '$$',
+    minStay: '2 nights',
+    seasonality: {
+      openMonths: ['January', 'February', 'March', 'April', 'May', 'September', 'October', 'November', 'December'],
+      notes: 'Closed June-August for summer break'
+    },
+    amenities: ['horseback riding', 'cattle work', 'river swimming', 'dance hall', 'chuck wagon dinners', 'kids programs'],
+    uniqueHooks: ['operating since 1901', 'authentic cattle work', 'Texas Hill Country location'],
+    lat: 29.7266,
+    lng: -99.0736,
     createdAt: '2024-01-01T00:00:00Z',
     updatedAt: '2024-01-01T00:00:00Z',
   },
@@ -205,22 +188,7 @@ Planning your first dude ranch vacation can be exciting but overwhelming. With s
 
 **Beginners**: Look for ranches that specialize in teaching riding skills and offer gentle horses.
 
-**Experienced Riders**: Seek out ranches with more challenging terrain and advanced riding programs.
-
-## Location Matters
-
-- **Mountain Ranches**: Offer stunning scenery and cooler temperatures
-- **Desert Ranches**: Provide unique landscapes and year-round riding weather
-- **Working Ranches**: Give authentic cattle ranch experiences
-
-## What's Included?
-
-Most dude ranches offer all-inclusive packages that typically include:
-- Accommodations
-- All meals
-- Horseback riding instruction
-- Entertainment programs
-- Some activities (fishing, hiking, etc.)`,
+**Experienced Riders**: Seek out ranches with more challenging terrain and advanced riding programs.`,
     cityId: null,
     categoryId: null,
     publishedAt: '2024-01-15T00:00:00Z',
@@ -249,15 +217,6 @@ export const mockMedia: MediaItem[] = [
   {
     id: '3',
     listingId: '3',
-    url: '/src/assets/ranch-cabin.jpg',
-    alt: 'Pahaska Tepee historic lodge',
-    width: 640,
-    height: 512,
-    createdAt: '2024-01-01T00:00:00Z',
-  },
-  {
-    id: '4',
-    listingId: '4',
     url: '/src/assets/horseback-riding.jpg',
     alt: 'Dixie Dude Ranch horseback riding',
     width: 640,

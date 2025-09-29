@@ -114,6 +114,52 @@ export async function getFeaturedListings(limit?: number): Promise<Listing[]> {
   return await populateListings(listings);
 }
 
+function scoreSimilarity(a: Listing, b: Listing): number {
+  const aFeatures = new Set([...(a.amenities || []), ...(a.uniqueHooks || [])]);
+  const bFeatures = new Set([...(b.amenities || []), ...(b.uniqueHooks || [])]);
+  
+  const intersection = [...aFeatures].filter(x => bFeatures.has(x)).length;
+  const union = new Set([...aFeatures, ...bFeatures]).size || 1;
+  
+  return intersection / union;
+}
+
+export async function getSimilarListings(
+  listingId: string, 
+  stateFilter?: string, 
+  limit: number = 3
+): Promise<Listing[]> {
+  const currentListing = mockListings.find(l => l.id === listingId);
+  if (!currentListing) return [];
+
+  // Get current listing's city to determine state
+  const currentCity = mockCities.find(c => c.id === currentListing.cityId);
+  const currentState = currentCity?.state;
+
+  // Get candidates - prefer same state, fallback to all
+  const sameStateCities = mockCities.filter(c => c.state === currentState);
+  const sameStateListings = mockListings.filter(l => 
+    l.id !== listingId && 
+    sameStateCities.some(c => c.id === l.cityId)
+  );
+
+  const candidates = sameStateListings.length >= limit 
+    ? sameStateListings 
+    : mockListings.filter(l => l.id !== listingId);
+
+  // Score and rank by similarity
+  const ranked = candidates
+    .map(listing => ({
+      listing,
+      score: scoreSimilarity(currentListing, listing)
+    }))
+    .sort((a, b) => b.score - a.score || a.listing.name.localeCompare(b.listing.name))
+    .slice(0, limit)
+    .map(item => item.listing);
+
+  return await populateListings(ranked);
+}
+
 async function populateListings(listings: Listing[]): Promise<Listing[]> {
   return listings.map(listing => ({
     ...listing,

@@ -30,12 +30,25 @@ export interface Listing {
   cityId: string;
   phone?: string;
   website?: string;
+  email?: string;
   address: string;
   shortDesc: string;
   longDescMd: string;
   rating: number;
   sourcesJson: Record<string, any>;
   isFeatured: boolean;
+  // Enhanced ranch details
+  priceBand?: string; // $, $$–$$$, unknown
+  minStay?: string;
+  seasonality?: {
+    openMonths: string[];
+    notes?: string;
+  };
+  amenities?: string[];
+  uniqueHooks?: string[];
+  lat?: number;
+  lng?: number;
+  postcode?: string;
   createdAt: string;
   updatedAt: string;
   // Populated joins
