@@ -15,9 +15,9 @@ import { Star, ArrowRight, MapPin, Activity } from 'lucide-react';
 
 // Import images
 import heroMountainRanch from '@/assets/hero-mountain-ranch.jpg';
-import familyHorseback from '@/assets/family-horseback-real.jpg';
-import ranchLodge from '@/assets/ranch-lodge-real.jpg';
-import cattleDrive from '@/assets/cattle-drive-real.jpg';
+import familyHorseback from '@/assets/dude-ranch-family.jpg';
+import ranchLodge from '@/assets/dude-ranch-lodge.jpg';
+import cattleDrive from '@/assets/dude-ranch-work.jpg';
 const Index = () => {
   const [featuredListings, setFeaturedListings] = useState<Listing[]>([]);
   useEffect(() => {
