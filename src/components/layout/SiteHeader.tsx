@@ -12,21 +12,6 @@ export function SiteHeader() {
               Dude Ranch Retreats
             </div>
           </Link>
-          
-          <nav className="hidden md:flex items-center space-x-6">
-            <Link 
-              to="/guides" 
-              className="text-foreground hover:text-primary transition-smooth font-medium"
-            >
-              Guides
-            </Link>
-            <Link 
-              to="/advertise" 
-              className="text-foreground hover:text-primary transition-smooth font-medium"
-            >
-              Advertise
-            </Link>
-          </nav>
 
         </div>
       </div>
