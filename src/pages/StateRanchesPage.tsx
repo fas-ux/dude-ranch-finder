@@ -61,13 +61,11 @@ export default function StateRanchesPage() {
   if (loading) {
     return (
       <>
-        <SiteHeader />
         <main className="container mx-auto py-12 px-4">
           <div className="flex justify-center items-center min-h-[400px]">
             <div className="text-lg">Loading ranches...</div>
           </div>
         </main>
-        <SiteFooter />
       </>
     );
   }
@@ -82,8 +80,6 @@ export default function StateRanchesPage() {
           {JSON.stringify(itemListSchema)}
         </script>
       </Helmet>
-
-      <SiteHeader />
       
       <main className="container mx-auto py-12 px-4">
         <div className="max-w-6xl mx-auto">
@@ -186,8 +182,6 @@ export default function StateRanchesPage() {
           )}
         </div>
       </main>
-
-      <SiteFooter />
     </>
   );
 }

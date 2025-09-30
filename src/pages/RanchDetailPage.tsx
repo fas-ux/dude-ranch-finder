@@ -47,13 +47,11 @@ export default function RanchDetailPage() {
   if (loading) {
     return (
       <>
-        <SiteHeader />
         <main className="container mx-auto py-12 px-4">
           <div className="flex justify-center items-center min-h-[400px]">
             <div className="text-lg">Loading ranch details...</div>
           </div>
         </main>
-        <SiteFooter />
       </>
     );
   }
@@ -61,7 +59,6 @@ export default function RanchDetailPage() {
   if (!ranch) {
     return (
       <>
-        <SiteHeader />
         <main className="container mx-auto py-12 px-4">
           <div className="text-center py-16">
             <h1 className="text-3xl font-bold mb-4">Ranch Not Found</h1>
@@ -73,7 +70,6 @@ export default function RanchDetailPage() {
             </Button>
           </div>
         </main>
-        <SiteFooter />
       </>
     );
   }
@@ -128,8 +124,6 @@ export default function RanchDetailPage() {
         </script>
       </Helmet>
 
-      <SiteHeader />
-      
       <main className="container mx-auto py-8 px-4">
         <div className="max-w-6xl mx-auto">
           {/* State Header Section */}
@@ -368,8 +362,6 @@ export default function RanchDetailPage() {
           </div>
         </div>
       </main>
-
-      <SiteFooter />
     </>
   );
 }
