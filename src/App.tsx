@@ -46,7 +46,7 @@ const AppContent = () => {
                 <Route path="*" element={<NotFound />} />
               </Routes>
             </main>
-            <SiteFooter />
+            {isHomePage && <SiteFooter />}
           </div>
   );
 };
