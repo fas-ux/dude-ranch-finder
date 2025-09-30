@@ -49,7 +49,7 @@ const Index = () => {
           </div>
           <h1 className="text-6xl md:text-8xl font-display font-bold mb-8 drop-shadow-2xl leading-tight">
             Discover Your Perfect
-            <span className="block bg-gradient-to-r from-accent to-accent-foreground bg-clip-text text-stone-300">Dude Ranch Retreat</span>
+            <span className="block bg-gradient-to-r from-accent to-accent-foreground bg-clip-text text-white">Dude Ranch Retreat</span>
           </h1>
           <p className="text-xl md:text-2xl font-serif mb-12 max-w-3xl mx-auto opacity-95 leading-relaxed">
             From horseback rides through mountain trails to authentic cowboy experiences, 
