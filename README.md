@@ -1,73 +1,153 @@
-# Welcome to your Lovable project
+# Dude Ranch Retreats - Next.js SSG/ISR Site
 
-## Project info
+A high-performance, SEO-optimized website for discovering America's best dude ranches. Built with Next.js 14, App Router, and static site generation (SSG) with incremental static regeneration (ISR).
 
-**URL**: https://lovable.dev/projects/ccea5875-ed97-4e39-a6b8-bd2bcfd9129c
+## Features
 
-## How can I edit this code?
+- **Server-Side Rendering (SSR)** - All content visible without JavaScript
+- **Static Site Generation (SSG)** - Pre-built pages for optimal performance
+- **Incremental Static Regeneration (ISR)** - 24-hour revalidation for fresh content
+- **Complete SEO Implementation** - Meta tags, JSON-LD, sitemap, robots.txt
+- **Responsive Design** - Mobile-first, beautiful UI
+- **Performance Optimized** - Next.js Image optimization, prefetching
 
-There are several ways of editing your application.
+## Project Structure
 
-**Use Lovable**
+```
+├── app/                    # Next.js App Router
+│   ├── layout.tsx         # Root layout with SEO
+│   ├── page.tsx           # Homepage (SSG)
+│   ├── ranches/
+│   │   ├── page.tsx       # Ranch listing (SSG)
+│   │   ├── [slug]/page.tsx # Ranch details (SSG/ISR)
+│   │   └── page/[page]/page.tsx # Pagination (SSG)
+│   ├── sitemap.ts         # XML sitemap generation
+│   ├── robots.ts          # Robots.txt
+│   └── not-found.tsx      # 404 page
+├── components/            # Reusable components
+├── content/
+│   └── ranches.json       # Ranch data source
+└── lib/
+    ├── seo.ts            # SEO helpers
+    └── schema.ts         # JSON-LD schema generators
+```
 
-Simply visit the [Lovable Project](https://lovable.dev/projects/ccea5875-ed97-4e39-a6b8-bd2bcfd9129c) and start prompting.
+## Development
 
-Changes made via Lovable will be committed automatically to this repo.
+Install dependencies:
+```bash
+npm install
+```
 
-**Use your preferred IDE**
-
-If you want to work locally using your own IDE, you can clone this repo and push changes. Pushed changes will also be reflected in Lovable.
-
-The only requirement is having Node.js & npm installed - [install with nvm](https://github.com/nvm-sh/nvm#installing-and-updating)
-
-Follow these steps:
-
-```sh
-# Step 1: Clone the repository using the project's Git URL.
-git clone <YOUR_GIT_URL>
-
-# Step 2: Navigate to the project directory.
-cd <YOUR_PROJECT_NAME>
-
-# Step 3: Install the necessary dependencies.
-npm i
-
-# Step 4: Start the development server with auto-reloading and an instant preview.
+Run development server:
+```bash
 npm run dev
 ```
 
-**Edit a file directly in GitHub**
+Build for production:
+```bash
+npm run build
+```
 
-- Navigate to the desired file(s).
-- Click the "Edit" button (pencil icon) at the top right of the file view.
-- Make your changes and commit the changes.
+Start production server:
+```bash
+npm start
+```
 
-**Use GitHub Codespaces**
+## Adding New Ranches
 
-- Navigate to the main page of your repository.
-- Click on the "Code" button (green button) near the top right.
-- Select the "Codespaces" tab.
-- Click on "New codespace" to launch a new Codespace environment.
-- Edit files directly within the Codespace and commit and push your changes once you're done.
+To add a new ranch to the site:
 
-## What technologies are used for this project?
+1. Open `content/ranches.json`
+2. Add a new ranch object with all required fields:
 
-This project is built with:
+```json
+{
+  "slug": "your-ranch-name",
+  "name": "Your Ranch Name",
+  "description": "Detailed description of the ranch experience...",
+  "streetAddress": "123 Ranch Road",
+  "addressLocality": "City",
+  "addressRegion": "ST",
+  "postalCode": "12345",
+  "country": "US",
+  "phone": "+1-555-555-5555",
+  "website": "https://yourranch.com",
+  "image": "https://your-image-url.jpg",
+  "priceRange": "$$$",
+  "ratingValue": 4.8,
+  "reviewCount": 127,
+  "amenities": ["Horseback riding", "Fishing", "Family suites"]
+}
+```
 
-- Vite
-- TypeScript
-- React
-- shadcn-ui
-- Tailwind CSS
+3. Rebuild the site to generate the new static pages
 
-## How can I deploy this project?
+## SEO Verification Commands
 
-Simply open [Lovable](https://lovable.dev/projects/ccea5875-ed97-4e39-a6b8-bd2bcfd9129c) and click on Share -> Publish.
+Test that pages render server-side content:
 
-## Can I connect a custom domain to my Lovable project?
+```bash
+# Test homepage content
+curl -sL https://duderanchretreats.com | head -n 100
 
-Yes, you can!
+# Test ranch listing
+curl -sL https://duderanchretreats.com/ranches | head -n 100
 
-To connect a domain, navigate to Project > Settings > Domains and click Connect Domain.
+# Test individual ranch page
+curl -sL https://duderanchretreats.com/ranches/montana-big-sky-ranch | grep -i "Montana Big Sky Ranch"
 
-Read more here: [Setting up a custom domain](https://docs.lovable.dev/features/custom-domain#custom-domain)
+# Check sitemap
+curl -sL https://duderanchretreats.com/sitemap.xml
+
+# Check robots.txt
+curl -sL https://duderanchretreats.com/robots.txt
+```
+
+All content must be visible in the HTML source without JavaScript execution.
+
+## Performance Features
+
+- **Image Optimization** - Next.js automatic WebP/AVIF conversion
+- **Font Loading** - Optimized Google Fonts with `font-display: swap`
+- **Code Splitting** - Automatic route-based splitting
+- **Prefetching** - Link prefetching for instant navigation
+- **Static Assets** - CDN-ready static file serving
+
+## SEO Implementation
+
+- **Metadata API** - Dynamic meta tags for each page
+- **JSON-LD Schema** - Structured data for search engines
+- **Canonical URLs** - Proper canonical link generation
+- **Open Graph** - Social media sharing optimization
+- **XML Sitemap** - Auto-generated from content
+- **Robots.txt** - Search engine crawling instructions
+
+## Deployment
+
+The site is configured for Vercel deployment with:
+- Automatic static optimization
+- Edge runtime for dynamic routes
+- Image optimization CDN
+- Analytics ready
+
+Deploy to Vercel:
+```bash
+vercel --prod
+```
+
+## Migration from React SPA
+
+This project replaces a client-side rendered React application with:
+
+1. **Server-side content delivery** - No loading states for primary content
+2. **Static pre-generation** - All ranch pages built at deploy time
+3. **SEO-first architecture** - Meta tags, structured data, sitemaps
+4. **Performance optimization** - Image optimization, code splitting
+5. **Incremental updates** - ISR for content freshness without full rebuilds
+
+The exact same UI/UX is maintained while delivering superior SEO and performance.
+
+## License
+
+© 2024 Dude Ranch Retreats. All rights reserved.
