@@ -8,6 +8,7 @@ import { metaForHome, canonicalFor } from '@/lib/seo'
 import { websiteSchema } from '@/lib/schema'
 import { supabase } from '@/integrations/supabase/client'
 import RanchCard from '@/components/ranch/RanchCard'
+import StatePreview from '@/components/StatePreview'
 
 export const metadata: Metadata = {
   ...metaForHome(),
@@ -155,17 +156,49 @@ export default async function HomePage() {
             </p>
           </div>
 
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-            {featuredRanches.map((ranch) => (
-              <RanchCard key={ranch.slug} ranch={ranch} />
-            ))}
-          </div>
+          {featuredRanches && featuredRanches.length > 0 ? (
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+              {featuredRanches.map((ranch) => (
+                <RanchCard key={ranch.id} ranch={ranch} />
+              ))}
+            </div>
+          ) : (
+            <div className="text-center py-12">
+              <p className="text-muted-foreground text-lg">Loading featured ranches...</p>
+            </div>
+          )}
           
           <div className="text-center mt-12">
             <Button variant="outline" size="lg" asChild>
               <Link href="/ranches">
                 <MapPin className="mr-2" />
                 Browse All Ranches
+              </Link>
+            </Button>
+          </div>
+        </div>
+      </section>
+
+      {/* Find Ranch by State */}
+      <section id="browse-by-state" className="py-20 bg-background">
+        <div className="container mx-auto px-4">
+          <div className="text-center mb-16">
+            <h2 className="text-4xl md:text-5xl font-serif font-bold text-foreground mb-6">
+              Find Ranches by State
+            </h2>
+            <p className="text-xl text-muted-foreground max-w-3xl mx-auto">
+              Explore dude ranches across America's most beautiful landscapes, 
+              from Montana's Big Sky country to Arkansas' Ozark Mountains
+            </p>
+          </div>
+          
+          <StatePreview />
+          
+          <div className="text-center mt-12">
+            <Button size="lg" asChild>
+              <Link href="/states">
+                <MapPin className="mr-2" />
+                Browse All States
               </Link>
             </Button>
           </div>
