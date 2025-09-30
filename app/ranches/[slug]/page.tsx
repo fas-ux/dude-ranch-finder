@@ -7,7 +7,7 @@ import { Button } from '@/components/ui/button'
 import { Badge } from '@/components/ui/badge'
 import { metaForRanch, canonicalFor } from '@/lib/seo'
 import { ranchSchema, breadcrumbSchema } from '@/lib/schema'
-import ranches from '@/content/ranches.json'
+import { supabase } from '@/integrations/supabase/client'
 
 export const revalidate = 86400 // 24 hours
 
@@ -17,14 +17,22 @@ interface Props {
 
 // Generate static params for all ranches
 export async function generateStaticParams() {
-  return ranches.map((ranch) => ({
+  const { data: ranches } = await supabase
+    .from('ranches')
+    .select('slug')
+  
+  return ranches?.map((ranch) => ({
     slug: ranch.slug,
-  }))
+  })) || []
 }
 
 // Generate metadata for SEO
 export async function generateMetadata({ params }: Props): Promise<Metadata> {
-  const ranch = ranches.find((r) => r.slug === params.slug)
+  const { data: ranch } = await supabase
+    .from('ranches')
+    .select('*')
+    .eq('slug', params.slug)
+    .single()
   
   if (!ranch) {
     return {
@@ -46,7 +54,7 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
       type: 'website',
       images: [
         {
-          url: ranch.image,
+          url: 'https://images.unsplash.com/photo-1506905925346-21bda4d32df4?w=1200&h=630',
           width: 1200,
           height: 630,
           alt: ranch.name,
@@ -57,13 +65,20 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
       card: 'summary_large_image',
       title: meta.title,
       description: meta.description,
-      images: [ranch.image],
+      images: ['https://images.unsplash.com/photo-1506905925346-21bda4d32df4?w=1200&h=630'],
     }
   }
 }
 
-export default function RanchDetailPage({ params }: Props) {
-  const ranch = ranches.find((r) => r.slug === params.slug)
+export default async function RanchDetailPage({ params }: Props) {
+  const { data: ranch } = await supabase
+    .from('ranches')
+    .select(`
+      *,
+      states (name, code, slug)
+    `)
+    .eq('slug', params.slug)
+    .single()
   
   if (!ranch) {
     notFound()
@@ -77,9 +92,18 @@ export default function RanchDetailPage({ params }: Props) {
   ]
 
   // Related ranches (different state)
-  const relatedRanches = ranches
-    .filter(r => r.slug !== ranch.slug && r.addressRegion !== ranch.addressRegion)
-    .slice(0, 3)
+  const { data: relatedRanches } = await supabase
+    .from('ranches')
+    .select(`
+      *,
+      states (name, code)
+    `)
+    .neq('id', ranch.id)
+    .neq('state_id', ranch.state_id)
+    .limit(3)
+
+  // Default image - in production you'd want actual ranch images
+  const defaultImage = "https://images.unsplash.com/photo-1506905925346-21bda4d32df4?w=1200&h=800"
 
   return (
     <>
@@ -111,7 +135,7 @@ export default function RanchDetailPage({ params }: Props) {
       {/* Hero Section */}
       <section className="relative h-[60vh] overflow-hidden">
         <Image
-          src={ranch.image}
+          src={defaultImage}
           alt={ranch.name}
           fill
           className="object-cover"
@@ -123,20 +147,19 @@ export default function RanchDetailPage({ params }: Props) {
           <div className="container mx-auto px-4 pb-8">
             <div className="text-white">
               <Badge variant="secondary" className="mb-4">
-                {ranch.addressLocality}, {ranch.addressRegion}
+                {ranch.city}, {ranch.states?.code}
               </Badge>
               <h1 className="text-4xl md:text-6xl font-display font-bold mb-4">
                 {ranch.name}
               </h1>
               <div className="flex items-center gap-4">
-                {ranch.ratingValue && (
-                  <div className="flex items-center gap-1">
-                    <Star className="w-5 h-5 fill-current text-yellow-400" />
-                    <span className="font-semibold">{ranch.ratingValue}</span>
-                    <span className="text-white/80">({ranch.reviewCount} reviews)</span>
-                  </div>
+                <span className="text-white/80">{ranch.price_band}</span>
+                {ranch.is_featured && (
+                  <Badge className="bg-primary">
+                    <Star className="w-4 h-4 mr-1" />
+                    Featured
+                  </Badge>
                 )}
-                <span className="text-white/80">{ranch.priceRange}</span>
               </div>
             </div>
           </div>
@@ -155,15 +178,19 @@ export default function RanchDetailPage({ params }: Props) {
               </p>
 
               {/* Amenities */}
-              <h3 className="text-2xl font-serif font-bold mb-4">Ranch Amenities</h3>
-              <div className="grid grid-cols-1 md:grid-cols-2 gap-2 mb-8">
-                {ranch.amenities.map((amenity) => (
-                  <div key={amenity} className="flex items-center gap-2">
-                    <div className="w-2 h-2 bg-primary rounded-full" />
-                    <span>{amenity}</span>
+              {ranch.amenities && ranch.amenities.length > 0 && (
+                <>
+                  <h3 className="text-2xl font-serif font-bold mb-4">Ranch Amenities</h3>
+                  <div className="grid grid-cols-1 md:grid-cols-2 gap-2 mb-8">
+                    {ranch.amenities.map((amenity: string, index: number) => (
+                      <div key={index} className="flex items-center gap-2">
+                        <div className="w-2 h-2 bg-primary rounded-full" />
+                        <span>{amenity}</span>
+                      </div>
+                    ))}
                   </div>
-                ))}
-              </div>
+                </>
+              )}
             </div>
 
             {/* Sidebar */}
@@ -172,63 +199,58 @@ export default function RanchDetailPage({ params }: Props) {
                 <h3 className="text-xl font-serif font-bold mb-4">Ranch Information</h3>
                 
                 <div className="space-y-4">
-                  <div className="flex items-start gap-3">
-                    <MapPin className="w-5 h-5 text-muted-foreground mt-0.5" />
-                    <div>
-                      <div className="font-medium">Location</div>
-                      <div className="text-sm text-muted-foreground">
-                        {ranch.streetAddress}<br />
-                        {ranch.addressLocality}, {ranch.addressRegion} {ranch.postalCode}
+                  {ranch.address && (
+                    <div className="flex items-start gap-3">
+                      <MapPin className="w-5 h-5 text-muted-foreground mt-0.5" />
+                      <div>
+                        <div className="font-medium">Location</div>
+                        <div className="text-sm text-muted-foreground">
+                          {ranch.address}<br />
+                          {ranch.city}, {ranch.states?.code} {ranch.postal_code}
+                        </div>
                       </div>
                     </div>
-                  </div>
+                  )}
 
-                  <div className="flex items-center gap-3">
-                    <Phone className="w-5 h-5 text-muted-foreground" />
-                    <div>
-                      <div className="font-medium">Phone</div>
-                      <a href={`tel:${ranch.phone}`} className="text-sm text-primary hover:underline">
-                        {ranch.phone}
-                      </a>
-                    </div>
-                  </div>
-
-                  <div className="flex items-center gap-3">
-                    <Globe className="w-5 h-5 text-muted-foreground" />
-                    <div>
-                      <div className="font-medium">Website</div>
-                      <a 
-                        href={ranch.website} 
-                        target="_blank" 
-                        rel="noopener noreferrer"
-                        className="text-sm text-primary hover:underline"
-                      >
-                        Visit Ranch Website
-                      </a>
-                    </div>
-                  </div>
-
-                  {ranch.ratingValue && (
+                  {ranch.phone && (
                     <div className="flex items-center gap-3">
-                      <Users className="w-5 h-5 text-muted-foreground" />
+                      <Phone className="w-5 h-5 text-muted-foreground" />
                       <div>
-                        <div className="font-medium">Guest Rating</div>
-                        <div className="text-sm text-muted-foreground flex items-center gap-1">
-                          <Star className="w-4 h-4 fill-current text-yellow-400" />
-                          {ranch.ratingValue}/5 ({ranch.reviewCount} reviews)
-                        </div>
+                        <div className="font-medium">Phone</div>
+                        <a href={`tel:${ranch.phone}`} className="text-sm text-primary hover:underline">
+                          {ranch.phone}
+                        </a>
+                      </div>
+                    </div>
+                  )}
+
+                  {ranch.website && (
+                    <div className="flex items-center gap-3">
+                      <Globe className="w-5 h-5 text-muted-foreground" />
+                      <div>
+                        <div className="font-medium">Website</div>
+                        <a 
+                          href={ranch.website} 
+                          target="_blank" 
+                          rel="noopener noreferrer"
+                          className="text-sm text-primary hover:underline"
+                        >
+                          Visit Ranch Website
+                        </a>
                       </div>
                     </div>
                   )}
                 </div>
 
-                <div className="mt-6 pt-6 border-t">
-                  <Button className="w-full" size="lg" asChild>
-                    <a href={ranch.website} target="_blank" rel="noopener noreferrer">
-                      Book Your Stay
-                    </a>
-                  </Button>
-                </div>
+                {ranch.website && (
+                  <div className="mt-6 pt-6 border-t">
+                    <Button className="w-full" size="lg" asChild>
+                      <a href={ranch.website} target="_blank" rel="noopener noreferrer">
+                        Book Your Stay
+                      </a>
+                    </Button>
+                  </div>
+                )}
               </div>
             </div>
           </div>
@@ -236,7 +258,7 @@ export default function RanchDetailPage({ params }: Props) {
       </section>
 
       {/* Related Ranches */}
-      {relatedRanches.length > 0 && (
+      {relatedRanches && relatedRanches.length > 0 && (
         <section className="py-16 bg-muted/30">
           <div className="container mx-auto px-4">
             <h2 className="text-3xl font-serif font-bold text-center mb-12">
@@ -245,14 +267,14 @@ export default function RanchDetailPage({ params }: Props) {
             <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
               {relatedRanches.map((relatedRanch) => (
                 <Link 
-                  key={relatedRanch.slug} 
+                  key={relatedRanch.id} 
                   href={`/ranches/${relatedRanch.slug}`}
                   className="group block"
                 >
                   <div className="bg-card border rounded-lg overflow-hidden transition-transform group-hover:scale-[1.02]">
                     <div className="relative h-48">
                       <Image
-                        src={relatedRanch.image}
+                        src={defaultImage}
                         alt={relatedRanch.name}
                         fill
                         className="object-cover"
@@ -263,15 +285,11 @@ export default function RanchDetailPage({ params }: Props) {
                         {relatedRanch.name}
                       </h3>
                       <p className="text-sm text-muted-foreground mb-2">
-                        {relatedRanch.addressLocality}, {relatedRanch.addressRegion}
+                        {relatedRanch.city}, {relatedRanch.states?.code}
                       </p>
-                      {relatedRanch.ratingValue && (
-                        <div className="flex items-center gap-1 text-sm">
-                          <Star className="w-4 h-4 fill-current text-yellow-400" />
-                          <span>{relatedRanch.ratingValue}</span>
-                          <span className="text-muted-foreground">({relatedRanch.reviewCount})</span>
-                        </div>
-                      )}
+                      <span className="text-sm text-muted-foreground">
+                        {relatedRanch.price_band}
+                      </span>
                     </div>
                   </div>
                 </Link>

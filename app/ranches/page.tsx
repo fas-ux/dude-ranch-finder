@@ -1,6 +1,6 @@
 import { Metadata } from 'next'
 import { metaForRanchList, canonicalFor } from '@/lib/seo'
-import ranches from '@/content/ranches.json'
+import { supabase } from '@/integrations/supabase/client'
 import RanchCard from '@/components/ranch/RanchCard'
 import { Badge } from '@/components/ui/badge'
 
@@ -30,12 +30,19 @@ export async function generateMetadata({ searchParams }: Props): Promise<Metadat
 
 const RANCHES_PER_PAGE = 24
 
-export default function RanchesPage({ searchParams }: Props) {
+export default async function RanchesPage({ searchParams }: Props) {
   const page = parseInt(searchParams.page || '1', 10)
   const startIndex = (page - 1) * RANCHES_PER_PAGE
-  const endIndex = startIndex + RANCHES_PER_PAGE
-  const paginatedRanches = ranches.slice(startIndex, endIndex)
-  const totalPages = Math.ceil(ranches.length / RANCHES_PER_PAGE)
+  
+  const { data: ranches, count } = await supabase
+    .from('ranches')
+    .select('*', { count: 'exact' })
+    .order('is_featured', { ascending: false })
+    .order('name')
+    .range(startIndex, startIndex + RANCHES_PER_PAGE - 1)
+
+  const totalRanches = count || 0
+  const totalPages = Math.ceil(totalRanches / RANCHES_PER_PAGE)
 
   return (
     <div className="min-h-screen bg-background py-16">
@@ -53,17 +60,23 @@ export default function RanchesPage({ searchParams }: Props) {
             each offering unique adventures and authentic Western experiences.
           </p>
           <div className="mt-6 text-sm text-muted-foreground">
-            Showing {paginatedRanches.length} of {ranches.length} ranches
+            Showing {ranches?.length || 0} of {totalRanches} ranches
             {page > 1 && ` (Page ${page} of ${totalPages})`}
           </div>
         </div>
 
         {/* Ranch Grid */}
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 mb-12">
-          {paginatedRanches.map((ranch) => (
-            <RanchCard key={ranch.slug} ranch={ranch} />
-          ))}
-        </div>
+        {ranches && ranches.length > 0 ? (
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 mb-12">
+            {ranches.map((ranch) => (
+              <RanchCard key={ranch.id} ranch={ranch} />
+            ))}
+          </div>
+        ) : (
+          <div className="text-center py-12">
+            <p className="text-muted-foreground text-lg">No ranches found.</p>
+          </div>
+        )}
 
         {/* Pagination */}
         {totalPages > 1 && (
@@ -94,14 +107,4 @@ export default function RanchesPage({ searchParams }: Props) {
       </div>
     </div>
   )
-}
-
-// Generate static params for pagination
-export async function generateStaticParams() {
-  const totalPages = Math.ceil(ranches.length / RANCHES_PER_PAGE)
-  
-  // Generate page parameters (we'll handle page 1 at /ranches)
-  return Array.from({ length: totalPages - 1 }, (_, i) => ({
-    page: (i + 2).toString() // Start from page 2
-  }))
 }

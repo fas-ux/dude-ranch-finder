@@ -6,7 +6,7 @@ import { Button } from '@/components/ui/button'
 import { Badge } from '@/components/ui/badge'
 import { metaForHome, canonicalFor } from '@/lib/seo'
 import { websiteSchema } from '@/lib/schema'
-import ranches from '@/content/ranches.json'
+import { supabase } from '@/integrations/supabase/client'
 import RanchCard from '@/components/ranch/RanchCard'
 
 export const metadata: Metadata = {
@@ -22,9 +22,13 @@ export const metadata: Metadata = {
   }
 }
 
-export default function HomePage() {
-  // Get featured ranches (first 6)
-  const featuredRanches = ranches.slice(0, 6)
+export default async function HomePage() {
+  // Get featured ranches from database
+  const { data: featuredRanches } = await supabase
+    .from('ranches')
+    .select('*')
+    .eq('is_featured', true)
+    .limit(6)
 
   return (
     <>
