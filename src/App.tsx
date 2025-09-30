@@ -25,10 +25,14 @@ const queryClient = new QueryClient();
 const AppContent = () => {
   const location = useLocation();
   const isHomePage = location.pathname === '/';
+  const isRanchPage = location.pathname.includes('dude-ranches') || 
+                      (location.pathname.split('/').length === 3 && 
+                       location.pathname.split('/')[1] && 
+                       location.pathname.split('/')[2]);
 
   return (
     <div className="min-h-screen flex flex-col">
-      {isHomePage && <SiteHeader />}
+      {(isHomePage || isRanchPage) && <SiteHeader />}
       <main className="flex-1">
               <Routes>
                 <Route path="/" element={<Index />} />
@@ -46,7 +50,7 @@ const AppContent = () => {
                 <Route path="*" element={<NotFound />} />
               </Routes>
             </main>
-            {isHomePage && <SiteFooter />}
+            {(isHomePage || isRanchPage) && <SiteFooter />}
           </div>
   );
 };
