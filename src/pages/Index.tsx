@@ -14,7 +14,7 @@ import { City, Category, Listing } from '@/lib/types';
 import { Star, ArrowRight, MapPin, Activity } from 'lucide-react';
 
 // Import images
-import heroHorsebackMountain from '@/assets/hero-horseback-mountain.jpg';
+import heroHorsebackMountain from '@/assets/hero-horseback-mountain.png';
 import familyHorseback from '@/assets/family-horseback.jpg';
 import ranchLodge from '@/assets/ranch-lodge.jpg';
 import cattleDrive from '@/assets/cattle-drive.jpg';
