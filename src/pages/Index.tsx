@@ -14,7 +14,7 @@ import { City, Category, Listing } from '@/lib/types';
 import { Star, ArrowRight, MapPin, Activity } from 'lucide-react';
 
 // Import images
-import heroMountainRanch from '@/assets/hero-mountain-ranch.jpg';
+import familyHorsebackHero from '@/assets/family-horseback-real.jpg';
 import familyHorseback from '@/assets/family-horseback.jpg';
 import ranchLodge from '@/assets/ranch-lodge.jpg';
 import cattleDrive from '@/assets/cattle-drive.jpg';
@@ -41,7 +41,7 @@ const Index = () => {
       {/* Hero Section */}
       <section className="relative bg-gradient-hero overflow-hidden min-h-screen flex items-center">
         <div className="absolute inset-0 bg-cover bg-center bg-no-repeat" style={{
-        backgroundImage: `linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.5)), url(${heroMountainRanch})`
+        backgroundImage: `linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.5)), url(${familyHorsebackHero})`
       }} />
         <div className="relative z-10 container mx-auto px-4 py-32 text-center text-white">
           <div className="mb-4">
