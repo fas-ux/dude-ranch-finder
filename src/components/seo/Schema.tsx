@@ -10,10 +10,10 @@ export function OrganizationSchema() {
   const schema = {
     "@context": "https://schema.org",
     "@type": "Organization",
-    "name": "DudeRanch Directory",
+    "name": "Dude Ranch Retreats",
     "description": "Find authentic dude ranches and Western experiences across the United States",
-    "url": "https://duderanch-directory.com",
-    "logo": "https://duderanch-directory.com/logo.png",
+    "url": "https://duderanchretreats.com",
+    "logo": "https://duderanchretreats.com/favicon.png",
     "sameAs": [
       "https://facebook.com/duderanchdirectory",
       "https://twitter.com/duderanches",
@@ -104,7 +104,7 @@ export function ItemListSchema({ items, city, category, state }: ItemListSchemaP
         "@type": "TouristAttraction",
         "name": listing.name,
         "description": listing.shortDesc,
-        "url": `https://duderanch-directory.com/${state}/${city.slug}/${listing.category?.slug}/${listing.slug}`,
+        "url": `https://duderanchretreats.com/${state}/${city.slug}/${listing.category?.slug}/${listing.slug}`,
         "aggregateRating": {
           "@type": "AggregateRating",
           "ratingValue": listing.rating,
@@ -135,19 +135,19 @@ export function ArticleSchema({ article }: ArticleSchemaProps) {
     "datePublished": article.publishedAt,
     "author": {
       "@type": "Organization",
-      "name": "DudeRanch Directory"
+      "name": "Dude Ranch Retreats"
     },
     "publisher": {
       "@type": "Organization",
-      "name": "DudeRanch Directory",
+      "name": "Dude Ranch Retreats",
       "logo": {
         "@type": "ImageObject",
-        "url": "https://duderanch-directory.com/logo.png"
+        "url": "https://duderanchretreats.com/favicon.png"
       }
     },
     "mainEntityOfPage": {
       "@type": "WebPage",
-      "@id": `https://duderanch-directory.com/guides/${article.slug}`
+      "@id": `https://duderanchretreats.com/guides/${article.slug}`
     }
   };
 

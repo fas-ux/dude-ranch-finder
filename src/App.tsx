@@ -3,7 +3,7 @@ import { Toaster as Sonner } from "@/components/ui/sonner";
 import { TooltipProvider } from "@/components/ui/tooltip";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import { BrowserRouter, Routes, Route, useLocation } from "react-router-dom";
-import { HelmetProvider } from 'react-helmet-async';
+import { HelmetProvider, Helmet } from 'react-helmet-async';
 import { SiteHeader } from "@/components/layout/SiteHeader";
 import { SiteFooter } from "@/components/layout/SiteFooter";
 import { OrganizationSchema } from "@/components/seo/Schema";
@@ -62,6 +62,11 @@ const App = () => (
         <Toaster />
         <Sonner />
         <OrganizationSchema />
+        <Helmet>
+          <link rel="icon" href="/favicon.png" type="image/png" />
+          <link rel="shortcut icon" href="/favicon.png" type="image/png" />
+          <link rel="apple-touch-icon" href="/favicon.png" />
+        </Helmet>
         <BrowserRouter>
           <AppContent />
         </BrowserRouter>

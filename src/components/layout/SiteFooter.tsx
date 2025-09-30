@@ -71,7 +71,7 @@ export function SiteFooter() {
         
         <div className="border-t border-primary-foreground/20 mt-8 pt-8 text-center">
           <p className="text-primary-foreground/60">
-            © 2024 DudeRanch Directory. All rights reserved.
+            © 2024 Dude Ranch Retreats. All rights reserved.
           </p>
         </div>
       </div>

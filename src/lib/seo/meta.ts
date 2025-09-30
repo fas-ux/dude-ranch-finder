@@ -10,8 +10,8 @@ export interface MetaData {
   ogImage?: string;
 }
 
-const SITE_NAME = 'DudeRanch Directory';
-const SITE_URL = 'https://duderanch-directory.com'; // Replace with actual domain
+const SITE_NAME = 'Dude Ranch Retreats';
+const SITE_URL = 'https://duderanchretreats.com';
 const DEFAULT_OG_IMAGE = '/src/assets/hero-ranch.jpg';
 
 export function getHomePageMeta(): MetaData {
