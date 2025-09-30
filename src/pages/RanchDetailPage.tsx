@@ -132,7 +132,28 @@ export default function RanchDetailPage() {
       
       <main className="container mx-auto py-8 px-4">
         <div className="max-w-6xl mx-auto">
-          {/* Header Section */}
+          {/* State Header Section */}
+          <div className="mb-6">
+            <Link 
+              to={`/${state}/dude-ranches`}
+              className="inline-flex items-center text-sm text-muted-foreground hover:text-primary transition-colors mb-4"
+            >
+              ← Back to {stateDisplay} Ranches
+            </Link>
+            <header className="mb-6">
+              <h1 className="text-3xl font-bold mb-2">
+                {stateDisplay} Dude Ranches
+              </h1>
+              <p className="text-lg text-muted-foreground max-w-3xl">
+                Explore authentic ranch experiences in {stateDisplay}. From working cattle ranches to luxury guest ranches, 
+                find the perfect western getaway with horseback riding, outdoor adventures, and genuine hospitality.
+              </p>
+            </header>
+          </div>
+
+          <Separator className="mb-8" />
+
+          {/* Ranch Details Header */}
           <header className="mb-8">
             <div className="flex items-start justify-between mb-4">
               <div className="flex-1">
