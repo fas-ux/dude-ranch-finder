@@ -67,12 +67,12 @@ export function MainNav() {
           </NavigationMenuItem>
 
           <NavigationMenuItem>
-            <Link to="/faq" className="inline-flex h-10 w-max items-center justify-center rounded-md px-4 py-2 text-sm font-medium text-foreground hover:bg-muted transition-colors">FAQ
+            <Link to="/about" className="inline-flex h-10 w-max items-center justify-center rounded-md px-4 py-2 text-sm font-medium text-foreground hover:bg-muted transition-colors">About
           </Link>
           </NavigationMenuItem>
 
           <NavigationMenuItem>
-            <Link to="/about" className="inline-flex h-10 w-max items-center justify-center rounded-md px-4 py-2 text-sm font-medium text-foreground hover:bg-muted transition-colors">About
+            <Link to="/faq" className="inline-flex h-10 w-max items-center justify-center rounded-md px-4 py-2 text-sm font-medium text-foreground hover:bg-muted transition-colors">FAQ
           </Link>
           </NavigationMenuItem>
         </NavigationMenuList>
@@ -108,11 +108,11 @@ export function MainNav() {
               <Link to="/blog" className="block text-foreground font-medium" onClick={() => setIsMobileMenuOpen(false)}>
                 Ranch Life
               </Link>
-              <Link to="/faq" className="block text-foreground font-medium" onClick={() => setIsMobileMenuOpen(false)}>
-                FAQ
-              </Link>
               <Link to="/about" className="block text-foreground font-medium" onClick={() => setIsMobileMenuOpen(false)}>
                 About
+              </Link>
+              <Link to="/faq" className="block text-foreground font-medium" onClick={() => setIsMobileMenuOpen(false)}>
+                FAQ
               </Link>
               <Link to="/advertise" className="block text-foreground font-medium" onClick={() => setIsMobileMenuOpen(false)}>
                 List Your Ranch
