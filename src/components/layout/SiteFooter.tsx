@@ -44,7 +44,7 @@ export function SiteFooter() {
           </div>
 
           <div>
-            <h3 className="font-serif font-semibold mb-4">More States</h3>
+            
             <ul className="space-y-2">
               <li>
                 <Link to="/ranches/new-mexico" className="text-primary-foreground/80 hover:text-primary-foreground transition-smooth">
