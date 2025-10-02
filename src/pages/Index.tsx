@@ -15,7 +15,7 @@ import { Star, ArrowRight, MapPin, Activity } from 'lucide-react';
 
 // Import images
 import heroHorsebackMountain from '@/assets/hero-horseback-mountain.png';
-import familyHorseback from '@/assets/family-horseback.jpg';
+import authenticExperience from '@/assets/authentic-experience.png';
 import ranchLodge from '@/assets/ranch-lodge.jpg';
 import cattleDrive from '@/assets/cattle-drive.jpg';
 const Index = () => {
@@ -83,7 +83,7 @@ const Index = () => {
           <div className="grid grid-cols-1 md:grid-cols-3 gap-12">
             <div className="text-center group">
               <div className="relative mb-8 overflow-hidden rounded-2xl">
-                <img src={familyHorseback} alt="Family horseback riding experience" className="w-full h-64 object-cover group-hover:scale-105 transition-transform duration-300" />
+                <img src={authenticExperience} alt="Young cowboy experiencing authentic ranch life" className="w-full h-64 object-cover group-hover:scale-105 transition-transform duration-300" />
               </div>
               <h3 className="text-2xl font-serif font-bold mb-4">Authentic Experiences</h3>
               <p className="text-muted-foreground leading-relaxed">
