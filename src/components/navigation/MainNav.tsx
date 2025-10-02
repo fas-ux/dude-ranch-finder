@@ -59,7 +59,13 @@ export function MainNav() {
           </NavigationMenuItem>
 
           <NavigationMenuItem>
-            
+            <Link to="/faq" className="inline-flex h-10 w-max items-center justify-center rounded-md px-4 py-2 text-sm font-medium text-foreground hover:bg-muted transition-colors">FAQ
+          </Link>
+          </NavigationMenuItem>
+
+          <NavigationMenuItem>
+            <Link to="/about" className="inline-flex h-10 w-max items-center justify-center rounded-md px-4 py-2 text-sm font-medium text-foreground hover:bg-muted transition-colors">About
+          </Link>
           </NavigationMenuItem>
         </NavigationMenuList>
       </NavigationMenu>
@@ -83,9 +89,15 @@ export function MainNav() {
               </div>
             </div>
             
-            <div className="border-t pt-4">
-              <Link to="/blog" className="block text-foreground font-medium mb-2" onClick={() => setIsMobileMenuOpen(false)}>
-                Blog
+            <div className="border-t pt-4 space-y-2">
+              <Link to="/blog" className="block text-foreground font-medium" onClick={() => setIsMobileMenuOpen(false)}>
+                Ranch Life
+              </Link>
+              <Link to="/faq" className="block text-foreground font-medium" onClick={() => setIsMobileMenuOpen(false)}>
+                FAQ
+              </Link>
+              <Link to="/about" className="block text-foreground font-medium" onClick={() => setIsMobileMenuOpen(false)}>
+                About
               </Link>
               <Link to="/advertise" className="block text-foreground font-medium" onClick={() => setIsMobileMenuOpen(false)}>
                 List Your Ranch

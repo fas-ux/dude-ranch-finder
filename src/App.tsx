@@ -18,6 +18,8 @@ import StateRanchesPage from "./pages/StateRanchesPage";
 import RanchDetailPage from "./pages/RanchDetailPage";
 import BlogPage from "./pages/BlogPage";
 import ArticlePage from "./pages/ArticlePage";
+import FAQPage from "./pages/FAQPage";
+import AboutPage from "./pages/AboutPage";
 import NotFound from "./pages/NotFound";
 
 const queryClient = new QueryClient();
@@ -36,6 +38,8 @@ const AppContent = () => {
       <main className="flex-1">
               <Routes>
                 <Route path="/" element={<Index />} />
+                <Route path="/about" element={<AboutPage />} />
+                <Route path="/faq" element={<FAQPage />} />
                 <Route path="/admin/scrape" element={<AdminScrape />} />
                 <Route path="/blog" element={<BlogPage />} />
                 <Route path="/blog/:slug" element={<ArticlePage />} />
