@@ -23,14 +23,6 @@ const states = [
   { name: 'Wyoming', slug: 'wyoming' }
 ];
 
-const guides = [
-  { title: 'Best Family Ranches', slug: 'best-dude-ranches-for-families' },
-  { title: 'Luxury Experiences', slug: 'luxury-dude-ranch-experiences' },
-  { title: 'Working Ranch Vacations', slug: 'working-ranch-vacations' },
-  { title: 'Horseback Riding Guides', slug: 'horseback-riding-guides' },
-  { title: 'Ranch Wedding Venues', slug: 'ranch-wedding-venues' },
-  { title: 'Corporate Retreats', slug: 'corporate-retreat-ranches' }
-];
 
 export function MainNav() {
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
@@ -53,25 +45,6 @@ export function MainNav() {
                   >
                     <div className="font-medium text-foreground">{state.name}</div>
                     <div className="text-sm text-muted-foreground">Dude Ranches</div>
-                  </Link>
-                ))}
-              </div>
-            </NavigationMenuContent>
-          </NavigationMenuItem>
-
-          <NavigationMenuItem>
-            <NavigationMenuTrigger className="text-foreground font-medium">
-              Travel Guides
-            </NavigationMenuTrigger>
-            <NavigationMenuContent>
-              <div className="grid grid-cols-1 gap-3 p-6 w-[400px]">
-                {guides.map((guide) => (
-                  <Link
-                    key={guide.slug}
-                    to={`/guides/${guide.slug}`}
-                    className="block p-3 rounded-lg hover:bg-muted transition-colors"
-                  >
-                    <div className="font-medium text-foreground">{guide.title}</div>
                   </Link>
                 ))}
               </div>
