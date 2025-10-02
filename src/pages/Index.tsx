@@ -9,7 +9,7 @@ import { CityCategorySearch } from '@/components/search/CityCategorySearch';
 import { ListingCard } from '@/components/listing/ListingCard';
 import { getHomePageMeta } from '@/lib/seo/meta';
 import { getRanches } from '@/lib/data/ranches';
-import USMap from '@/components/search/USMap';
+import StateSearch from '@/components/search/StateSearch';
 import { City, Category, Listing } from '@/lib/types';
 import { Star, ArrowRight, MapPin, Activity } from 'lucide-react';
 
@@ -170,7 +170,7 @@ const Index = () => {
               from Montana's Big Sky country to Texas hill country
             </p>
           </div>
-          <USMap />
+          <StateSearch />
         </div>
       </section>
     </>;
