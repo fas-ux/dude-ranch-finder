@@ -4,7 +4,7 @@ import drrLogo from '@/assets/drr-logo.png';
 export function SiteFooter() {
   return <footer className="bg-primary text-primary-foreground mt-16">
       <div className="container mx-auto px-4 py-12">
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
           <div>
             <div className="mb-4">
               <img src={drrLogo} alt="Dude Ranch Retreats" className="h-12 w-auto" />
@@ -40,6 +40,12 @@ export function SiteFooter() {
                   Nevada
                 </Link>
               </li>
+            </ul>
+          </div>
+
+          <div>
+            <h3 className="font-serif font-semibold mb-4">More States</h3>
+            <ul className="space-y-2">
               <li>
                 <Link to="/ranches/new-mexico" className="text-primary-foreground/80 hover:text-primary-foreground transition-smooth">
                   New Mexico
