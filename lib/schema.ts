@@ -67,3 +67,41 @@ export function ranchSchema(ranch: any) {
 
   return schema
 }
+
+export function faqSchema(faqs: Array<{question: string, answer: string}>) {
+  return {
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    "mainEntity": faqs.map(faq => ({
+      "@type": "Question",
+      "name": faq.question,
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": faq.answer
+      }
+    }))
+  }
+}
+
+export function aboutPageSchema() {
+  return {
+    "@context": "https://schema.org",
+    "@type": "AboutPage",
+    "name": "About Dude Ranch Retreats",
+    "description": "Learn about Dude Ranch Retreats, your trusted source for finding authentic Western ranch experiences across America",
+    "url": `${siteUrl}/about`,
+    "mainEntity": {
+      "@type": "Organization",
+      "name": "Dude Ranch Retreats",
+      "description": "Dude Ranch Retreats connects travelers with authentic dude ranch experiences across the United States, offering carefully curated listings of working ranches, guest ranches, and Western vacation destinations.",
+      "url": siteUrl,
+      "logo": `${siteUrl}/favicon.png`,
+      "foundingDate": "2024",
+      "sameAs": [
+        "https://facebook.com/duderanchretreats",
+        "https://twitter.com/duderanchretreats",
+        "https://instagram.com/duderanchretreats"
+      ]
+    }
+  }
+}

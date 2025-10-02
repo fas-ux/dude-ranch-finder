@@ -158,3 +158,59 @@ export function ArticleSchema({ article }: ArticleSchemaProps) {
     />
   );
 }
+
+interface FAQSchemaProps extends SchemaProps {
+  faqs: Array<{question: string, answer: string}>;
+}
+
+export function FAQSchema({ faqs }: FAQSchemaProps) {
+  const schema = {
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    "mainEntity": faqs.map(faq => ({
+      "@type": "Question",
+      "name": faq.question,
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": faq.answer
+      }
+    }))
+  };
+
+  return (
+    <script
+      type="application/ld+json"
+      dangerouslySetInnerHTML={{ __html: JSON.stringify(schema) }}
+    />
+  );
+}
+
+export function AboutPageSchema() {
+  const schema = {
+    "@context": "https://schema.org",
+    "@type": "AboutPage",
+    "name": "About Dude Ranch Retreats",
+    "description": "Learn about Dude Ranch Retreats, your trusted source for finding authentic Western ranch experiences across America",
+    "url": "https://duderanchretreats.com/about",
+    "mainEntity": {
+      "@type": "Organization",
+      "name": "Dude Ranch Retreats",
+      "description": "Dude Ranch Retreats connects travelers with authentic dude ranch experiences across the United States, offering carefully curated listings of working ranches, guest ranches, and Western vacation destinations.",
+      "url": "https://duderanchretreats.com",
+      "logo": "https://duderanchretreats.com/favicon.png",
+      "foundingDate": "2024",
+      "sameAs": [
+        "https://facebook.com/duderanchretreats",
+        "https://twitter.com/duderanchretreats",
+        "https://instagram.com/duderanchretreats"
+      ]
+    }
+  };
+
+  return (
+    <script
+      type="application/ld+json"
+      dangerouslySetInnerHTML={{ __html: JSON.stringify(schema) }}
+    />
+  );
+}
